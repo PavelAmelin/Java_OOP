@@ -1,11 +1,15 @@
-package java_oop_seminar_1;
+package java_oop_seminar_3.task_1;
 
-public class Rectangle {
+
+import java.util.Arrays;
+
+public class Rectangle implements I_Rectangle {
     private double width;
     private double height;
+    I_Diag d;
 
     public Rectangle() {
-        this(100, 50);
+        this(default_width, default_height);
     }
     public Rectangle(double width, double height) {
         setWidth(width);
@@ -27,10 +31,17 @@ public class Rectangle {
     public void setHeight(double height) {
         this.height = height;
     }
-    public double calculateArea() {
-        return getWidth() * getHeight();
+    @Override
+    public double calculateDiagonal() {
+        d = ((x, y) -> Math.pow((Math.pow(x, 2) + Math.pow(y, 2)), 0.5));
+        return d.get_diag(getWidth(), getHeight());
     }
-    public double calculatePerimeter() {
-        return 2 * (getWidth() + getHeight());
+    @Override
+    public String toString() {
+        return "width=" + width + ", height=" + height;
     }
+
 }
+
+
+
